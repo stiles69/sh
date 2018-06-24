@@ -20,9 +20,15 @@
 set -o nounset                              # Treat unset variables as an error
 
 
-funcGenerateGPGKey ()
-{ 	
-ssh-keygen -t dsa
-gpg --gen-key
+funcGenerateGPGKey ()	
+{
 
+	echo 'Starting Generate GPG Key.'
+	ssh-keygen -t dsa
+	gpg --gen-key
+	echo 'Ending Function.'
 }
+
+funcGenerateGPGKey
+
+exit 0
