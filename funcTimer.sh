@@ -1,9 +1,9 @@
-#!/bin/bash  
+#!/bin/bash - 
 #===============================================================================
 #
-#          FILE: funcGenerateGPGKey.sh
+#          FILE: funcTimer.sh
 # 
-#         USAGE: ./funcGenerateGPGKey.sh 
+#         USAGE: ./funcTimer.sh 
 # 
 #   DESCRIPTION: 
 # 
@@ -11,24 +11,27 @@
 #  REQUIREMENTS: ---
 #          BUGS: ---
 #         NOTES: ---
-#        AUTHOR: Brett Salemink (), brett.salemink@gmail.com
+#        AUTHOR: Brett Salemink (), admin@roguedesigns.us
 #  ORGANIZATION: Rogue Designs
-#       CREATED: 06/24/2018 15:51
+#       CREATED: 03/07/18 06:08
 #      REVISION:  ---
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
 
-
-funcGenerateGPGKey ()	
+function Timer () 
 {
+	COUNTDOWN=$1
+	LONGCOMMAND=$2
 
-	echo 'Starting Generate GPG Key.'
-	ssh-keygen -t dsa
-	gpg --gen-key
-	echo 'Ending Function.'
-}
+	( sleep $COUNTDOWN ) & $LONGCOMMAND
+	seconds=1
+	while jobs %1 &>/dev/null ; do    
+		echo $((seconds++)) "seconds complete"
+		sleep 1    
+	done
+	
+	echo "Done."
+	
+}	# end function
 
-funcGenerateGPGKey
-
-exit 0
