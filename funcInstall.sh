@@ -22,55 +22,26 @@ set -o nounset                              # Treat unset variables as an error
 # Set Variables
 DEFAULT=default
 
-function func2 ()
+function funcInstall ()
 {
-	if [ -z "$1" ] 	# Is parameter #1 zero length?
+	if [ $# -gt 1  ] 	# Is parameter #1 zero length?
 	then
-		echo "-Parameter #1 is zero length.-"
+		echo "Incorrect number of parameters passed. Only requires 1 parameter, the PACKAGE to install."
 	else
-		echo "-Parameter #1 is \"$1\".-"
+		PACKAGENAME=$1
+		InstallProceed $PACKAGENAME 	
 	fi
 
-	variable=${1-$DEFAULT}		# What does
-	echo "variable = $variable"	# parameter substitution 
-					# show?
-					# ----------------------
-					# It distinguishes between
-					# no param and a null
-					# param.
-
-	if [ "$2" ]
-	then
-		echo "-Parameter #2 is \"$2\".-"
-	fi
-
-	return 0
 }	# end funcInstall
 
-echo
+function InstallProceed ()
+{
+	if [ $(dpkg-query -W -f='${Status}' $PACKAGENAME 2>/dev/null | grep -c "ok installed") -eq 0 ];
+	then
+		echo "The package to be installed is $PACKAGENAME"
+	else
+		echo "The package $PACKAGENAME is already installed."
+	fi
+}	# end InstallProceed	
 
-echo "Nothing passed."
-func2 ""			# Called with no params
-echo
-
-echo "Zero length parameter passed."
-func2 "$uninitialized_param"	# Called with uninitialized param
-echo
-
-echo "One parameter passed."
-func2 first			# Called with one param
-echo
-
-echo "Two parameters passed."
-func2 first second 		# Called with two params
-echo
-
-echo "\"\" \"second\" passed."
-func2 "" second			# Called with zero-length first
-echo				# parameter and ASCII string as a
-				# second one.
 exit 0
-
-
-
-
