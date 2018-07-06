@@ -19,6 +19,8 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+. funcCheckInstall.sh
+
 function Install ()
 {
 	if [ "$#" -lt 1 ]
@@ -46,11 +48,22 @@ function Install ()
 
 function InstallProceed ()
 {
-	if [ $(dpkg-query -W -f='${Status}' $PACKAGENAME 2>/dev/null | grep -c "ok installed") -eq 0 ];
+#	if [ $(dpkg-query -W -f='${Status}' $PACKAGENAME 2>/dev/null | grep -c "ok installed") -eq 0 ];
+#	then
+#		echo "The package to be installed is $PACKAGENAME"
+#	else
+#		echo "The package $PACKAGENAME is already installed."
+#	fi
+
+	ISINSTALLED=$(CheckInstall $PACKAGENAME)
+
+	if [ "$ISINSTALLED " -lt 1 ]
 	then
-		echo "The package to be installed is $PACKAGENAME"
+		echo "This is where the sudo apt-get install would go."
+		exit 0
 	else
-		echo "The package $PACKAGENAME is already installed."
+		echo "The package is already installed. Exiting"
+		exit 0
 	fi
-}	# end InstallProceed	
+}	# end InstallProceed
 
