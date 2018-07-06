@@ -19,8 +19,8 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-. funcCheckInstall.sh
-. funcOS.sh
+. $HOME/lib/sh/funcCheckInstall.sh
+. $HOME/lib/sh/funcOS.sh
 
 function Install ()
 {
