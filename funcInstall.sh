@@ -20,6 +20,7 @@
 set -o nounset                              # Treat unset variables as an error
 
 . funcCheckInstall.sh
+. funcOS.sh
 
 function Install ()
 {
@@ -40,7 +41,6 @@ function Install ()
 		echo "Missing parameter PACKAGENAME."
 	else
 		PACKAGENAME=$1
-		echo "Testing if-loop. The PACKAGENAME is $PACKAGENAME"
 		InstallProceed $PACKAGENAME 	
 	fi
 
@@ -48,22 +48,61 @@ function Install ()
 
 function InstallProceed ()
 {
-#	if [ $(dpkg-query -W -f='${Status}' $PACKAGENAME 2>/dev/null | grep -c "ok installed") -eq 0 ];
-#	then
-#		echo "The package to be installed is $PACKAGENAME"
-#	else
-#		echo "The package $PACKAGENAME is already installed."
-#	fi
-
 	ISINSTALLED=$(CheckInstall $PACKAGENAME)
 
-	if [ "$ISINSTALLED " -lt 1 ]
+#	echo $ISINSTALLED
+	if [ ISINSTALLED = 1 ]
 	then
-		echo "This is where the sudo apt-get install would go."
+		echo "The package is already installed. Now exiting"
 		exit 0
 	else
-		echo "The package is already installed. Exiting"
-		exit 0
+		PickOS
 	fi
 }	# end InstallProceed
 
+function InstallDeb ()
+{
+	sudo apt-get install $PACKAGENAME
+}	# end InstallDeb
+
+function InstallArch ()
+{
+	sudo pacman -S $PACKAGENAME
+}	# end InstallArch
+
+function InstallGentoo ()
+{
+	sudo emerge $PACKAGENAME --autounmask-write
+	sudo etc-update
+	sudo emerge $PACKAGENAME
+}	# end InstallGentoo
+
+function PickOS ()
+{
+	
+	OS=$(funcOS)
+	case $OS in
+		"Manjaro Linux")
+		InstallArch
+		;;
+		"Antergos Linux")
+		InstallArch
+		;;
+		"Raspbian GNU/Linux")
+		InstallDeb
+		;;
+		"Debian")
+		InstallDeb
+		;;
+		"Arch Linux")
+		InstallArch
+		;;
+		"Gentoo")
+		InstallGentoo
+		;;
+		*)
+		echo "Distro not recognized. Please install $PACKAGENAME manually. Now Exiting"
+		exit 0
+		;;
+	esac
+}	# end PickOS

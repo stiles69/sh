@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash  
 #===============================================================================
 #
 #          FILE: funcCheckInstall.sh
@@ -32,11 +32,9 @@ function CheckInstall ()
 
 	if [ $(dpkg-query -W -f='${Status}' $PACKAGENAME 2>/dev/null | grep -c "ok installed") -eq 0 ]
 	then	  
-		PACKAGEISINSTALLED=0
+		return 0
 	else
-		PACKAGEISINSTALLED=1
+		return 1
 	fi 
-	
-	return $PACKAGEISINSTALLED
 } 	#end CheckInstall
 
