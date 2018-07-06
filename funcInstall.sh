@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash  
 #===============================================================================
 #
 #          FILE: funcInstall.sh
@@ -19,20 +19,30 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-# Set Variables
-DEFAULT=default
-
-function funcInstall ()
+function Install ()
 {
-	if [ $# -gt 1  ] 	# Is parameter #1 zero length?
+	if [ "$#" -lt 1 ]
 	then
-		echo "Incorrect number of parameters passed. Only requires 1 parameter, the PACKAGE to install."
+		echo "Missing PACKAGENAME parameter."
+		echo "Exiting"
+		exit 0
+	fi
+
+	if [ "$#" -gt 1 ]
+	then
+		echo "Too many parameters. Only one is required the PACKAGENAME."
+	fi
+
+	if [ -z "$1" ] 	# Is parameter #1 zero length?
+	then
+		echo "Missing parameter PACKAGENAME."
 	else
 		PACKAGENAME=$1
+		echo "Testing if-loop. The PACKAGENAME is $PACKAGENAME"
 		InstallProceed $PACKAGENAME 	
 	fi
 
-}	# end funcInstall
+}	# end Install
 
 function InstallProceed ()
 {
@@ -44,4 +54,3 @@ function InstallProceed ()
 	fi
 }	# end InstallProceed	
 
-exit 0
