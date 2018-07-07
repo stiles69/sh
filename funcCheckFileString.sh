@@ -29,11 +29,11 @@ function CheckFileString ()
 {
 	##To check for a particular  string in a file
 
-	if grep -q $1 $2
+	if [ grep -q $1 $2 && echo $? = 0]
 	then
-		echo "Hooray!!It's available"
+		return 0
 	else
-		echo "Oops!!Not available"
+		exit 1
 	fi
 } 	# end function
 
