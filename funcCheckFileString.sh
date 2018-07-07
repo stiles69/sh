@@ -21,15 +21,11 @@ set -o nounset                              # Treat unset variables as an error
 
 USAGE="Usage CheckFileString [STRINGTOCHECK] [PATH/TO/FILETOCHECK] ex. Must be the full path and the file."
 
-## Variables
-STRINGTOCHECK=$1
-FILETOCHECK=$2
-
 function CheckFileString ()
 {
 	##To check for a particular  string in a file
 
-	if [ grep -q $1 $2 && echo $? = 0]
+	if [ {grep -q $1 $2} && echo $? = 0]
 	then
 		return 0
 	else
