@@ -34,6 +34,3 @@ function PerformCommandEachSubDirectory ()
 		done
 	fi
 }	# end function
-
-# == Exit ==
-exit 0
