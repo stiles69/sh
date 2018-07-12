@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash  
 #===============================================================================
 #
 #          FILE: funcCleanPeriods.sh
@@ -19,15 +19,18 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-function CleanPeriodsFromFilenames ()
-
+function CleanPeriodFromFilenames ()
 {
-		DIR="$1"
-		for file in "$DIR"; do
 
-    			newname=$(echo $file | tr '.' '_' | sed 's/\(.*\)_\([^_]*\)$/\1.\2/g')
-			echo "The new name is: $newname"
-    			[ "$newname" != "$file" ] && mv "$file" "$newname"
-		done
+for fname in *; do
+  name="${fname%\.*}"
+  extension="${fname#$name}"
+  newname="${name//./_}"
+  newfname="$newname""$extension"
+  if [ "$fname" != "$newfname" ]; then
+    echo mv "$fname" "$newfname"
+    mv "$fname" "$newfname"
+  fi
+done
 }	# end function
 
