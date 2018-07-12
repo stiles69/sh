@@ -19,25 +19,24 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+. $HOME/lib/sh/funcRemoveQuoteMarksFromFilenames.sh
 . $HOME/lib/sh/funcCleanSpacesFromFilenames.sh
 . $HOME/lib/sh/funcCleanPeriodFromFilenames.sh
-. $HOME/lib/sh/funcSanitize.sh
+. $HOME/lib/sh/funcRemoveSpecialCharactersFromFilenames.sh
+. $HOME/lib/sh/funcRemoveMultipleUnderlinesFromFilenames.sh
 
-function CleanWholeDirectory.sh
+function CleanWholeDirectory
 {
-	if [ "$#" -lt 1 ]
-        then
-                echo "Function CleanWholeDirectory is missing parameter."
-                echo "Now exiting."
-                exit 0
-        else
-                local PARAM1=$1
-                
-        fi
-
-	Sanitize_dir $PARAM1
-	CleanPeriodsFromFilenames
+	RemoveMultipleUnderlinesFromFilenames
+	wait
+	RemoveQuoteMarksFromFilenames
+	wait
+	CleanPeriodFromFilenames
+	wait
 	CleanSpacesFromFilenames
+	wait
+	RemoveSpecialCharactersFromFilenames
+	wait
 
 }	# end function
 

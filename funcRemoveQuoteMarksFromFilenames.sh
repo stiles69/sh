@@ -1,9 +1,9 @@
-#/bin/bash
+#!/bin/bash  
 #===============================================================================
 #
-#          FILE: funcClean.sh
+#          FILE: funcRemoveQuoteMarksFromFilenames.sh
 # 
-#         USAGE: ./funcClean.sh 
+#         USAGE: ./funcRemoveQuoteMarksFromFilenames.sh 
 # 
 #   DESCRIPTION: 
 # 
@@ -13,17 +13,14 @@
 #         NOTES: ---
 #        AUTHOR: Brett Salemink (), admin@roguedesigns.us
 #  ORGANIZATION: Rogue Designs
-#       CREATED: 07/11/2018 20:09
+#       CREATED: 07/11/2018 23:45
 #      REVISION:  ---
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
 
-# For files in folder named /files
-function CleanSpacesFromFilenames ()
+function RemoveQuoteMarksFromFilenames ()
 {
-	renamer --find " " --replace "" "*"
-	renamer --find "  " --replace "" "*"
-
+	renamer --find "'" --replace "" "*"
+	renamer --find '"' --replace '' '*'
 }	# end function
-
