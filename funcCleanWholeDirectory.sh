@@ -27,6 +27,9 @@ set -o nounset                              # Treat unset variables as an error
 
 function CleanWholeDirectory
 {
+	
+	RemoveSpecialCharactersFromFilenames
+	wait
 	RemoveMultipleUnderlinesFromFilenames
 	wait
 	RemoveQuoteMarksFromFilenames
@@ -34,8 +37,6 @@ function CleanWholeDirectory
 	CleanPeriodFromFilenames
 	wait
 	CleanSpacesFromFilenames
-	wait
-	RemoveSpecialCharactersFromFilenames
 	wait
 
 }	# end function
