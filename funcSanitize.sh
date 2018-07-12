@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash  
 #===============================================================================
 #
 #          FILE: funcSanitize.sh
@@ -35,6 +35,8 @@ function Sanitize() {
 
   filename=$(basename "$PARAM1")
   directory=$(dirname "$PARAM1")
+  echo "Sanitizing filename: $filename"
+  echo "Sanitizing directory: $directory"
 
   filename_clean=$(echo "$filename" | sed -e 's/[\\/:\*\?"<>\|\x01-\x1F\x7F]//g' -e 's/^\(nul\|prn\|con\|lpt[0-9]\|com[0-9]\|aux\)\(\.\|$\)//i' -e 's/^\.*$//' -e 's/^$/NONAME/')
 
@@ -46,6 +48,8 @@ function Sanitize() {
 
 export -f Sanitize
 
-function Santize_dir() {
-  find "$1" -depth -exec bash -c 'sanitize "$0"' {} \;
+function Sanitize_dir() {
+  find "$1" -depth -exec bash -c 'Sanitize "$0"' {} \;
 }
+
+

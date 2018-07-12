@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#/bin/bash
 #===============================================================================
 #
 #          FILE: funcClean.sh
@@ -20,7 +20,7 @@
 set -o nounset                              # Treat unset variables as an error
 
 # For files in folder named /files
-function Clean ()
+function CleanSpacesFromFilenames ()
 {
 for i in `IFS="";find /files -name *\ *`
 do
@@ -30,6 +30,7 @@ done > /tmp/list
 while read line
 do
 	mv "$line" `echo $line | sed 's/ /_/g'`
+
 done < /tmp/list
 
 rm /tmp/list
