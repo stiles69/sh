@@ -28,8 +28,8 @@ function Demux ()
 	if [ "$FILEEXT" = "mp4" ]
 	then
 
-		ffmpeg -i "$MYVIDEO" -vcodec copy -vn myvideo_video.mp4
-		ffmpeg -i "$MYVIDEO" -acodec copy -vn myvideo_audio.m4a
+		ffmpeg -i "$MYVIDEO" -vcodec copy -vn "$HOME/Videos/GoogleCast/myvideo_video.mp4"
+		ffmpeg -i "$MYVIDEO" -acodec copy -vn "$HOME/Videos/GoogleCast/myvideo_audio.m4a"
 	else
 		echo "Wrong extension must be mp4"
 		exit 0
