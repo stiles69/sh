@@ -22,25 +22,12 @@ set -o nounset                              # Treat unset variables as an error
 function CleanPeriodsFromFilenames ()
 
 {
-	if [ $SHELL = /bin/zsh ]
-	then
-		CleanWithZsh
-	else
-		Clean
-	fi
+		DIR="$1"
+		for file in "$DIR"; do
 
-	function CleanWithZsh ()
-	{
-		autoload -U zmv
-		zmv '(*).(*)' '${1//./_}.$2'
-	}	# end function
-
-	function Clean ()
-	{
-		for file in *; do
     			newname=$(echo $file | tr '.' '_' | sed 's/\(.*\)_\([^_]*\)$/\1.\2/g')
+			echo "The new name is: $newname"
     			[ "$newname" != "$file" ] && mv "$file" "$newname"
 		done
-	}	# end function
 }	# end function
 
