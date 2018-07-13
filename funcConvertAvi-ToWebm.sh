@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash  
 #===============================================================================
 #
 #          FILE: funcConvertAvi-ToWebm.sh
@@ -23,7 +23,7 @@ function ConvertAviToWebm ()
 {
 
 	MYVIDEO="$1"
-	ffmpeg -i "$MYVIDEO" -f webm -c:v libvpx -b:v 1M -acodec libvorbis "$MYVIDEO.webm" -hide-banner
+	ffmpeg -i "$MYVIDEO" -f webm -c:v libvpx -b:v 1M -acodec libvorbis "$MYVIDEO.webm"
 
 }	# end function
 
