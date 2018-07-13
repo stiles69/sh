@@ -67,7 +67,7 @@ function InstallDeb ()
 
 function InstallArch ()
 {
-	sudo pacman -S $PACKAGENAME
+	yaourt -S $PACKAGENAME
 }	# end InstallArch
 
 function InstallGentoo ()
