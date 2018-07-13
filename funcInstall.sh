@@ -65,9 +65,40 @@ function InstallDeb ()
 	sudo apt-get install $PACKAGENAME
 }	# end InstallDeb
 
+function InstallYay ()
+{
+	ISYAYINSTALLED=$(CheckInstall Yay)
+	if [ ISYAYINSTALLED = 1 ]
+	then
+		echo "Yay is installed. Beginning install of $PACKAGENAME"
+	else
+		InstallYayProceed
+	fi	
+}	# end function
+
+function InstallYayProceed ()
+{
+	echo "You do not have yay installed. Do you want to proceed or try to install $PACKAGENAME with Pacman? [1.Yay,2.Pacman]"
+	read YAYPROCEED
+
+	case $YAYPROCEED in
+		1)
+		sudo pacman -S yay
+		InstallArch
+		;;
+		2)
+		sudo pacman -S $PACKAGENAME
+		;;
+		*)
+		echo "Unrecognized response. Exiting."
+		exit 0
+		;;
+	esac
+}	# end function
+
 function InstallArch ()
 {
-	yaourt -S $PACKAGENAME
+	yay -S --answerclean ALL --answeredit None --mflags "--nocheck --skippingpgpcheck --noconfirm" $PACKAGENAME
 }	# end InstallArch
 
 function InstallGentoo ()
