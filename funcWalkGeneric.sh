@@ -22,7 +22,7 @@ set -o nounset                              # Treat unset variables as an error
 shopt -s globstar
 
 
-function Walk ()
+function WalkGeneric ()
 {
 for i in ./**/*
 do
