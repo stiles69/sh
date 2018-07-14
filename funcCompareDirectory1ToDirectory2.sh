@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash  
 #===============================================================================
 #
 #          FILE: funcCompareDirectory1ToDirectory2.sh
@@ -30,9 +30,10 @@ function CompareDirectory1ToDirectory2 ()
 		cd "$DIRECTORY1"
 		if [ ! "$PWD/NoMatch" ]
 		then
-			mkdir "$PWD/NoMatch"
+			TEMPDIR="(echo "${mktemp}")"
+			echo $TEMPDIR
 		fi
-		Walk
+		#Walk
 	else
 		echo "Wrong number of parameters. Usage is $USAGE"
 		exit 1
@@ -41,9 +42,6 @@ function CompareDirectory1ToDirectory2 ()
 	function Walk ()
 	{
 	shopt -s globstar
-	PARAM1="$1"
-	PARAM2="$2"
-
 	for i in ./**/*
 	do
 		if [ -f "$i" ];
@@ -62,6 +60,8 @@ function CompareDirectory1ToDirectory2 ()
 			#echo "FILEXT is "$FILEEXT
 			#echo "FILENAME is $FILENAME"
 			#echo "NAME =  $NAME"
+			
+			CompareDirectories	
 
 			#if [ $FILEEXT = "mp3" ]
 			#then
