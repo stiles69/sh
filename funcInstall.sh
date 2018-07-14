@@ -98,7 +98,7 @@ function InstallYayProceed ()
 
 function InstallArch ()
 {
-	yay -S --answerclean ALL --answeredit None --mflags "--nocheck --skippingpgpcheck --noconfirm" $PACKAGENAME
+	yay -S --answerclean ALL --answeredit None --mflags "--nocheck --noconfirm" $PACKAGENAME
 }	# end InstallArch
 
 function InstallGentoo ()
