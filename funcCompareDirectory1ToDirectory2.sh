@@ -23,15 +23,17 @@ function CompareDirectory1ToDirectory2 ()
 {
 	USAGE="The function takes two parameters PARAM1 is the directory to check against directory 2. It will only compare filenames and copy them into the PWD/NoMatch in both."
 
-	if [ "$#" lt 1 ]
+
+	
+	if [ "$#" -lt 1 ]
 	then
 		DIRECTORY1="$1"
 		DIRECTORY2="$2"
 		cd "$DIRECTORY1"
 		if [ ! "$PWD/NoMatch" ]
 		then
-			TEMPDIR="(echo "${mktemp}")"
-			echo $TEMPDIR
+			mkdir "$PWD/NoMatch"
+			echo "Made $PWD/NoMatch"
 		fi
 		#Walk
 	else
