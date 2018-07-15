@@ -21,67 +21,64 @@ set -o nounset                              # Treat unset variables as an error
 
 function CompareDirectory1ToDirectory2 ()
 {
-	USAGE="The function takes two parameters PARAM1 is the directory to check against directory 2. It will only compare filenames and copy them into the PWD/NoMatch in both."
-
-
-	
-	if [ "$#" -lt 1 ]
+	USAGE="The function takes two parameters PARAM1 is the directory you are in or DIRECTORY1 and PARAM2 is the directory to compare DIRECTORY1 to. It will only compare filenames and copy them into the PWD/NoMatch in both."
+	DIRECTORY1="$1"
+	echo "DIRECTORY1 = $DIRECTORY1"
+	DIRECTORY2="$2"
+	echo "DIRECTORY2 = $DIRECTORY2"
+	cd "$DIRECTORY1/"
+	echo "PWD is $PWD"
+	if [ ! -d "Match" ]
 	then
-		DIRECTORY1="$1"
-		DIRECTORY2="$2"
-		cd "$DIRECTORY1"
-		if [ ! "$PWD/NoMatch" ]
-		then
-			mkdir "$PWD/NoMatch"
-			echo "Made $PWD/NoMatch"
-		fi
-		#Walk
+		mkdir Match
+		echo "Made $DIRECTORY1/Match"
+		Walk
 	else
-		echo "Wrong number of parameters. Usage is $USAGE"
-		exit 1
+		Walk
 	fi
 
-	function Walk ()
-	{
-	shopt -s globstar
-	for i in ./**/*
-	do
-		if [ -f "$i" ];
-		then        
-					
-			printf "Path: %s\n" "${i%/*}" # shortest suffix removal
-			printf "Path with just one number sign: %s\n" "${i%#/*}" # shortest suffix removal
-			#printf "Filename: %s\n" "${i##*/}" # longest prefix removal
-			#printf "Extension: %s\n"  "${i##*.}"
-			#printf "\n\n"
-			#printf "Filesize: %s\n" "$(du -b "$i" | awk '{print $1}')"
-	       		FILEEXT="${i##*.}"	
-			FILENAME="${i##*/}"
-			#NAME="$(echo "$FILENAME" | cut -d'.' -f1)"
-			DIRECTORYPATH="${i%/*}"
-			#echo "FILEXT is "$FILEEXT
-			#echo "FILENAME is $FILENAME"
-			#echo "NAME =  $NAME"
-			
-			CompareDirectories	
-
-			#if [ $FILEEXT = "mp3" ]
-			#then
-				#NAME="$(echo "$FILENAME" | cut -d'.' -f1)"
-				#ffmpeg -n -i "$i" -c:a libfdk_aac -vn "./Converted/$NAME.m4a"
-				#wait
-			#fi
-			#wait
-
-			function CompareDirectories ()
-			{
-				NAME="$(echo "$FILENAME" | cut -d'.' -f1)"
-				echo "NAME is $NAME"
-				DIRECTORYPATHCOMPARE="$(echo "$DIRECTORYPATH" | cut -d'/' -f3)"
-				echo "DIRECTORYPATHCOMPARE is $DIRECTORYPATHCOMPARE"
-				#if [ ! "$NAME" =
-			}	# end CompareDirectories
-		fi
-	done
-	}	# end Walk
 }	# end function
+
+
+function Walk ()
+{
+shopt -s globstar
+for i in ./**/*
+do
+	if [ -f "$i" ];
+	then        
+		printf "Path: %s\n" "${i%/*}" # shortest suffix removal
+		printf "Path with just one number sign: %s\n" "${i%#/*}" # shortest suffix removal
+		#printf "Filename: %s\n" "${i##*/}" # longest prefix removal
+		#printf "Extension: %s\n"  "${i##*.}"
+		#printf "\n\n"
+		#printf "Filesize: %s\n" "$(du -b "$i" | awk '{print $1}')"
+	       	FILEEXT="${i##*.}"	
+		FILENAME="${i##*/}"
+		#NAME="$(echo "$FILENAME" | cut -d'.' -f1)"
+		DIRECTORYPATH="${i%/*}"
+		#echo "FILEXT is "$FILEEXT
+		#echo "FILENAME is $FILENAME"
+		#echo "NAME =  $NAME"
+		echo "PWD = $PWD"
+		echo "DIRECTORYPATH= $DIRECTORYPATH"
+		echo "i is $i"
+		NAME="$(echo "$FILENAME" | cut -d'.' -f1)"
+		find "$DIRECTORY2" -maxdepth 10 -name "$NAME.m4a" -exec mv {} "$PWD/Match/" \; -print 
+		echo "PWD after find is $PWD"
+		#CompareDirectories	
+	fi
+done
+}	# end Walk
+
+function CompareDirectories ()
+{
+NAME="$(echo "$FILENAME" | cut -d'.' -f1)"
+echo "NAME is $NAME"
+echo "DIRECTORY1 is $DIRECTORY1"
+echo "DIRECTORY2 is $DIRECTORY2"
+cd "$DIRECTORY2"
+
+# Start Rsyncing NotMatched
+#rsync -rvz --progress --exclude-from=FIND.txt $DIRECTORY2 $HOME/TODO 
+}	# end CompareDirectories

@@ -71,34 +71,58 @@ function InstallYay ()
 	if [ ISYAYINSTALLED = 1 ]
 	then
 		echo "Yay is installed. Beginning install of $PACKAGENAME"
+		yay -S $PACKAGENAME
 	else
 		InstallYayProceed
+		yay -S $PACKAGENAME
 	fi	
 }	# end function
 
 function InstallYayProceed ()
 {
-	echo "You do not have yay installed. Do you want to proceed or try to install $PACKAGENAME with Pacman? [1.Yay,2.Pacman]"
+	echo "This will install the yay packagemanger. Do you want to proceed? [Y/n]"
 	read YAYPROCEED
-
 	case $YAYPROCEED in
-		1)
+		Y|y)
 		sudo pacman -S yay
-		InstallArch
 		;;
-		2)
-		sudo pacman -S $PACKAGENAME
+		N|n)
+		echo "Exiting install of yay."
+		exit 1
 		;;
 		*)
-		echo "Unrecognized response. Exiting."
-		exit 0
+		echo "Invalid input. Exiting"
+		exit 1
 		;;
 	esac
 }	# end function
 
+function PacmanInstall ()
+{
+	sudo pacman -S $PACKAGENAME
+}	# end PacmanInstall
+
+function YaourtInstall ()
+{
+	echo "Beginning install with yaourt."
+	yaourt -S $PACKAGENAME
+}	# end YaourtInstall
+
 function InstallArch ()
 {
-	yay -S --answerclean ALL --answeredit None --mflags "--nocheck --noconfirm" $PACKAGENAME
+	echo "Do you want to install the package with [1.Pacman,2.Yaourt,3.Yay] if yay is not installed and it is selected it will be install first."
+	read PACKAGEMANAGER
+	case $PACKAGEMANAGER in
+		1)
+		PacmanInstall
+		;;
+		2)
+		YaourtInstall
+		;;
+		3)
+		YayInstall
+		;;	
+	esac
 }	# end InstallArch
 
 function InstallGentoo ()
