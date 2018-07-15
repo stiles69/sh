@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash  
 #===============================================================================
 #
 #          FILE: funcFirstLetterCapitalize.sh
@@ -19,13 +19,14 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-PARAM1="$1"
 
-function FirstLetterCapitalize ()
+function CapitalizeFirstLetter ()
 {
+	PARAM1="$1"
+	echo "PARAM1 is $PARAM1"
 	if [ "$#" ]
 	then
-		OUPUT="${PARAM1^}"
+		OUPUT=${PARAM1^}
 		echo "$OUTPUT"
 	else
 		echo "No parameter sent. Exiting"
