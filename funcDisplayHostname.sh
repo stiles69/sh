@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash  
 #===============================================================================
 #
 #          FILE: funcDisplayHostname.sh
@@ -21,7 +21,7 @@ set -o nounset                              # Treat unset variables as an error
 
 function DisplayHostname ()
 {
-	return hostname
+	hostname
 }	# end DisplayHostname
 
 
