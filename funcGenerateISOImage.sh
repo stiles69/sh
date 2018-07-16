@@ -28,9 +28,8 @@ function GenerateISOImage ()
 	else
 		MYDVDNAME="$1"
 		DVDISOIMAGENAME="$2"
-		THEDIRCTORY="$3"
 
-		genisoimage -dvd-video -V "MYDVDNAME" -o "$DVDISOIMAGENAME.iso" "$THEDIRECTORY"
+		genisoimage -dvd-video -V "MYDVDNAME" -o "$DVDISOIMAGENAME.iso" "OUTPUTDIR/"
 	fi
 }	# end GenerateISOImage
 
