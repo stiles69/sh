@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash  
 #===============================================================================
 #
 #          FILE: 4-Make-DVD.sh
@@ -21,6 +21,7 @@ set -o nounset                              # Treat unset variables as an error
 
 function GenerateISOImage ()
 {
+	USAGE="The function GenerateISOImage needs three parameters, MYDVDNAME, DVDISOIMAGE, and THEDIRECTORY. [GenerateISOImage MYDVDNAME DVDISOIMAGENAME THEDIRECTORY]"
 	if [ "$#" -lt 2 ]
 	then
 		echo $USAGE
