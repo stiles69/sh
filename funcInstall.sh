@@ -149,7 +149,7 @@ function PickOS ()
 		"Debian"|"OSMC")
 		InstallDeb
 		;;
-		"Arch Linux")
+		"Arch Linux"|"Manjaro-Arm")
 		InstallArch
 		;;
 		"Gentoo")
