@@ -152,7 +152,7 @@ function PickOS ()
 		"Arch Linux")
 		InstallArch
 		;;
-		"Manjaro-Arm")
+		"Manjaro-ARM")
 		InstallArch
 		;;
 		"Gentoo")
