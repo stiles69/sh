@@ -1,5 +1,5 @@
 #!/bin/bash
-#===============================================================================
+#==========================================================
 #
 #          FILE: funcSetPermissions.sh
 # 
@@ -15,7 +15,7 @@
 #  ORGANIZATION: Rogue Designs
 #       CREATED: 08/03/2018 22:11
 #      REVISION:  ---
-#===============================================================================
+#==========================================================
 
 set -o nounset                              # Treat unset variables as an error
 
@@ -33,7 +33,5 @@ function SetPermissions ()
 		echo "Exiting..."
 		exit 1
 	fi
-
-	echo "Permissions changed to Owner brettsalemink Group users and 774 for $SETPERMISSIONSDIR"
 }
 
