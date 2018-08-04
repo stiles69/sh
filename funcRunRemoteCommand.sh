@@ -1,5 +1,5 @@
 #!/bin/bash
-#===============================================================================
+#===========================================================
 #
 #          FILE: funcRunRemoteCommand.sh
 # 
@@ -15,7 +15,7 @@
 #  ORGANIZATION: Rogue Designs
 #       CREATED: 08/03/2018 23:24
 #      REVISION:  ---
-#===============================================================================
+#==========================================================
 
 set -o nounset                              # Treat unset variables as an error
 
@@ -29,7 +29,7 @@ function RunRemoteCommand ()
 		COMMAND="$2"
 		ssh brettsalemink@"$MACHINENAME" "$COMMAND"
 		echo "Done running $COMMAND on $MACHINENAME"
-		echo "==============================================================="
+		echo "==========================================================="
 		else
 		echo "$USAGE"
 		echo "Exiting ..."
