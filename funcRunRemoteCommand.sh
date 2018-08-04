@@ -29,6 +29,7 @@ function RunRemoteCommand ()
 		COMMAND="$2"
 		ssh brettsalemink@"$MACHINENAME" "$COMMAND"
 		echo "Done running $COMMAND on $MACHINENAME"
+		echo "================================================================================="
 	else
 		echo "$USAGE"
 		echo "Exiting ..."
