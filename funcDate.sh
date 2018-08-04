@@ -21,6 +21,6 @@ set -o nounset                              # Treat unset variables as an error
 
 function Date ()
 {
-	THEDATE=date
+	THEDATE="$(date)"
 	echo "$THEDATE"
 }	# end function
