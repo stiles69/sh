@@ -20,6 +20,7 @@
 set -o nounset                              # Treat unset variables as an error
 function UpdateSystem ()
 {
+	set -e
 	OSNUMBER="$1"
 	USAGE="The funcUpdateSystem takes a parameter of either 1 for Arch-Based, 2 for Debian-Based or 3 for Gentoo-Based"
 
@@ -72,7 +73,7 @@ function UpdateArch ()
 {
 	
 	echo "UPDATING FOR AN ARCH BASED SYSTEM IN 5 SECONDS"
-	wait 5
+	sleep 6 
 	sudo pacman -Syu
 	yaourt -Syu
 }	# end function
@@ -81,7 +82,7 @@ function UpdateDebian ()
 {
 	
 	echo "UPDATING FOR A DEBIAN BASED SYSTEM IN 5 SECONDS"
-	wait 5
+	sleep 6
 	sudo ucaresystem-core
 #	sudo apt-get update -y
 #	sudo apt-get upgrade -y
@@ -92,7 +93,7 @@ function UpdateGentoo ()
 {
 	
 	echo "UPDATING FOR A GENTOO BASED SYSTEM IN 5 SECONDS"
-	wait 5
+	sleep 6
 	sudo emerge --update --newuse --deep @world
 	sudo emerge --ask --depclean
 	sudo revdep-rebuild
