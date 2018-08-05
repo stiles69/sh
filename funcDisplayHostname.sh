@@ -19,9 +19,10 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+DELIMITER="#########################################################"
 function DisplayHostname ()
 {
-	hostname
+	echo "$(hostname)"
 }	# end DisplayHostname
 
 

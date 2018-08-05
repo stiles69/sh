@@ -19,6 +19,7 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+DELIMITER="#########################################################"
 USAGE="Usage CheckFileString [STRINGTOCHECK] [PATH/TO/FILETOCHECK] ex. Must be the full path and the file."
 
 function CheckFileString ()

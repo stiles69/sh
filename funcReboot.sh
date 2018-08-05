@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash  
 #===============================================================================
 #
 #          FILE: funcReboot.sh
@@ -19,6 +19,7 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+DELIMITER="#########################################################"
 
 SCRIPTDEFINITION="This will reboot the system."
 function Proceed ()

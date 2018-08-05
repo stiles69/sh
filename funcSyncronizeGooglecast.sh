@@ -19,12 +19,10 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+DELIMITER="#########################################################"
 function SyncronizeGooglecast ()
 {
 	MYVIDEO="$1"
-
 	ffmpeg -i "$MYVIDEO" -s -keyint_min 150 -g 150 -f webm -vf setsar=1:1 "$MYVIDEO.webm"
-
-
 }	# end function
 

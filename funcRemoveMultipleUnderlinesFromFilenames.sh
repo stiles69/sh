@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash  
 #===============================================================================
 #
 #          FILE: funcRemoveUnderlinesFromFilenames.sh
@@ -28,14 +28,5 @@ function RemoveMultipleUnderlinesFromFilenames ()
 	wait
 	renamer --find "-" --replace "_" "*"	
 	wait
-	#	rename '___' '_' *
-#	rename '__' '_' *
-#	for file in *
-#	do
-#		#sed -i 's/___\/_/' "$file"
-#		#sed -i 's/__\/_/' "$file"
-#		rename '___' '_' $file
-#		rename '____' '_' $file
-#	done
 }	# end function
 

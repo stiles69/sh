@@ -22,6 +22,9 @@ set -o nounset                              # Treat unset variables as an error
 
 function RunRemoteCommand ()
 {
+
+	DELIMITER="#########################################################"
+	LINE=" "
 	USAGE="The correct usage is source the file $HOME/lib/sh/funcRunRemoteCommand.sh and to call function RenRemoteCommand [MACHINENAME] [COMMAND]"
 	if [ "$2" ]
 	then
@@ -29,8 +32,9 @@ function RunRemoteCommand ()
 		COMMAND="$2"
 		ssh brettsalemink@"$MACHINENAME" "$COMMAND"
 		echo "Done running $COMMAND on $MACHINENAME"
-		echo "==========================================================="
-		else
+		echo "$DELIMITER"
+		echo "$LINE"
+	else
 		echo "$USAGE"
 		echo "Exiting ..."
 		exit 1

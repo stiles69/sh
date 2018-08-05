@@ -19,6 +19,7 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+DELIMITER="#########################################################"
 . $HOME/lib/sh/funcRemoveQuoteMarksFromFilenames.sh
 . $HOME/lib/sh/funcCleanSpacesFromFilenames.sh
 . $HOME/lib/sh/funcCleanPeriodFromFilenames.sh

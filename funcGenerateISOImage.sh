@@ -19,6 +19,7 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+DELIMITER="#########################################################"
 function GenerateISOImage ()
 {
 	USAGE="The function GenerateISOImage needs three parameters, MYDVDNAME, DVDISOIMAGE, and THEDIRECTORY. [GenerateISOImage MYDVDNAME DVDISOIMAGENAME THEDIRECTORY]"
@@ -32,5 +33,4 @@ function GenerateISOImage ()
 		genisoimage -dvd-video -V "MYDVDNAME" -o "$DVDISOIMAGENAME.iso" "OUTPUTDIR/"
 	fi
 }	# end GenerateISOImage
-
 

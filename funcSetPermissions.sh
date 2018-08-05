@@ -19,6 +19,7 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+DELIMITER="#########################################################"
 USAGE="The correct usage of this function is funcSetPermissions.sh needs to be sourced and to call this function SetPermissions [The Directory to set permissions on.]"
 
 function SetPermissions ()

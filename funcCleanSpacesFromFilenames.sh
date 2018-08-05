@@ -19,6 +19,7 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+DELIMITER="#########################################################"
 # For files in folder named /files
 function CleanSpacesFromFilenames ()
 {

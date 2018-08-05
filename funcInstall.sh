@@ -22,6 +22,7 @@ set -o nounset                              # Treat unset variables as an error
 . $HOME/lib/sh/funcCheckInstall.sh
 . $HOME/lib/sh/funcOS.sh
 
+DELIMITER="#########################################################"
 function Install ()
 {
 	if [ "$#" -lt 1 ]
