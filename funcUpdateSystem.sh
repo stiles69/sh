@@ -18,12 +18,20 @@
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
-
-OSCHOICE="1"
-
 function UpdateSystem ()
 {
+	OSNUMBER="$1"
 	USAGE="The funcUpdateSystem takes a parameter of either 1 for Arch-Based, 2 for Debian-Based or 3 for Gentoo-Based"
+	echo "Param1 = $1"
+
+	if [ "$#" -gt 0 ]
+	then
+		OSCHOICE="$1"
+	else
+		echo "$USAGE"
+		echo "EXITING"
+		exit 1
+	fi
 	
 	if [ "$OSCHOICE" = "1" ]
 	then
@@ -148,6 +156,3 @@ function ContinueUpdate ()
 	echo "	"
 	exit 0
 }	# end function
-
-#===EXIT===
-exit 0
