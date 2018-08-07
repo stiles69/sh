@@ -16,7 +16,6 @@
 #       CREATED: 08/03/2018 23:24
 #      REVISION:  ---
 #==========================================================
-
 set -o nounset                              # Treat unset variables as an error
 
 
@@ -30,7 +29,7 @@ function RunRemoteCommand ()
 	then
 		MACHINENAME="$1"
 		COMMAND="$2"
-		ssh brettsalemink@"$MACHINENAME" "$COMMAND"
+		ssh -t -o StrictHostKeyChecking=no brettsalemink@"$MACHINENAME" "$COMMAND"
 		echo "Done running $COMMAND on $MACHINENAME"
 		echo "$DELIMITER"
 		echo "$LINE"
@@ -40,3 +39,5 @@ function RunRemoteCommand ()
 		exit 1
 	fi
 }	# end RunRemoteCommand
+
+
