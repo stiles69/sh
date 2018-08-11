@@ -20,7 +20,7 @@ set -o nounset                              # Treat unset variables as an error
 
 function ReadTextFileIntoArray ()
 {
-	USAGE="This will take a text file that and read each line into an array and assign it a number. The output is ${a[$counter]}. Where a is the line of text followed by a number."
+	USAGE="This will take a text file that and read each line into an array and assign it a number. The output is . Where a is the line of text followed by a number."
 
 	counter=0
 	readarray a < testinput.txt
@@ -29,7 +29,7 @@ function ReadTextFileIntoArray ()
 		echo value is: ${a[$counter]}
     		counter=$(($counter+1))
 	done
-	return "${a[@]}"
+	echo "${a[@]}"
 
 }
 
