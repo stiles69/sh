@@ -147,7 +147,7 @@ function PickOS ()
 		"Raspbian GNU/Linux")
 		InstallDeb
 		;;
-		"Debian"|"OSMC")
+		"Debian"|"OSMC"|"Ubuntu")
 		InstallDeb
 		;;
 		"Arch Linux")
