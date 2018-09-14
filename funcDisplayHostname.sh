@@ -16,8 +16,7 @@
 #       CREATED: 07/15/2018 08:42
 #      REVISION:  ---
 #===============================================================================
-
-set -o nounset                              # Treat unset variables as an error
+#set -o nounset                              # Treat unset variables as an error
 
 DELIMITER="#########################################################"
 function DisplayHostname ()

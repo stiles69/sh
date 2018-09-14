@@ -16,8 +16,7 @@
 #       CREATED: 08/03/2018 22:11
 #      REVISION:  ---
 #======================================================
-set -o nounset                              # Treat unset variables as an error
-
+#set -o nounset                              # Treat unset variables as an error
 USAGE="The correct usage of this function is funcSetPermissions.sh needs to be sourced and to call this function SetPermissions [The Directory to set permissions on.]"
 
 function SetPermissions ()
