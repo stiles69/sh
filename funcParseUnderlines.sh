@@ -19,19 +19,21 @@
 #== GLOBAL VARS ==
 
 #=================
-ARGS=1
-E_BADARGS=85
+function ParseUnderlines ()
+{
 
-if [ $# -ne "$ARGS" ]
-then
-	echo "Usage: `basename $0` old-pattern"
-	exit $E_BADARGS
-fi
+	ARGS=1
+	E_BADARGS=85
 
-OLDVAR=$1
+	if [ $# -ne "$ARGS" ]
+	then
+		echo "Usage: `basename $0` old-pattern"
+		exit $E_BADARGS
+	fi
 
-sed -e "s/_/ /g" $OLDVAR >>> NEWVAR
+	OLDVAR="$1"
 
-echo $NEWVAR
+	echo "Old variable is $OLDVAR"
 
-
+	echo "$OLDVAR | sed 's/_/ /g'"
+}
