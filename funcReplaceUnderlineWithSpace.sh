@@ -1,9 +1,9 @@
 #!/bin/bash 
 #===============================================================================
 #
-#          FILE: funcDate.sh
+#          FILE: funcReplaceUnderlineWithSpace.sh
 # 
-#         USAGE: ./funcDate.sh 
+#         USAGE: ./funcReplaceUnderlineWithSpace.sh 
 # 
 #   DESCRIPTION: 
 # 
@@ -18,9 +18,9 @@
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
-
+OLDVARIABLE="$1"
 function ReplaceUnderlineWithSpace ()
 {
-	THEVARIABLE = "$1" | sed -e 's/_/ /g')
-	echo "$THEVARIABLE"
+	NEWVARIABLE = `echo $OLDVARIABLE | tr '_' ' '`
+	echo $NEWVARIABLE
 }	# end function
