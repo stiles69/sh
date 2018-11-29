@@ -33,7 +33,5 @@ function ParseUnderlines ()
 
 	OLDVAR="$1"
 
-	echo "Old variable is $OLDVAR"
-
-	echo "$OLDVAR | sed 's/_/ /g'"
+	echo $OLDVAR | sed 's/_/ /g'
 }
