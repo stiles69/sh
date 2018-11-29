@@ -19,8 +19,8 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-function Date ()
+function ReplaceUnderlineWithSpace ()
 {
-	THEVARIABLE = "$1" | sed -e 's/_/ /g)
+	THEVARIABLE = "$1" | sed -e 's/_/ /g')
 	echo "$THEVARIABLE"
 }	# end function
