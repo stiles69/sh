@@ -19,8 +19,7 @@
 set -o nounset                              # Treat unset variables as an error
 function RaspberryPi ()
 {
-	local PI
-	REVISION=$'(awk /^Revision/ {sub("^1000", "", $3); print $3} /proc/cpuinfo)'
+	REVISION=(awk /^Revision/ {sub('^1000', '', $3); print $3} /proc/cpuinfo)
 echo 'The Revision $REVISION'
 if [  REVISION='a21041' ]; then
 	PI='2 Model B'
