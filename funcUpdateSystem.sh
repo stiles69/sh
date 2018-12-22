@@ -1,5 +1,5 @@
 #!/bin/bash  
-#===============================================================================
+#====================================================
 #
 #          FILE: funcUpdate.sh
 # 
@@ -15,8 +15,7 @@
 #  ORGANIZATION: Rogue Designs
 #       CREATED: 07/05/2018 05:02
 #      REVISION:  ---
-#===============================================================================
-
+#====================================================
 set -o nounset                              # Treat unset variables as an error
 function UpdateSystem ()
 {
@@ -75,7 +74,7 @@ function UpdateArch ()
 	echo "UPDATING FOR AN ARCH BASED SYSTEM IN 5 SECONDS"
 	sleep 6 
 	sudo pacman -Syu
-	yaourt -Syu
+	yay -Syu
 }	# end function
 
 function UpdateDebian ()
@@ -100,14 +99,6 @@ function UpdateGentoo ()
 	eclean-dist --deep && eclean-pkg --deep
 }	# end UpdateGentoo
 
-function UpdateNotes ()
-{
-	$HOME/bin/Pull-Notes.sh
-	echo "#################################"
-	echo "     FINISHED SYNCING NOTES"
-	echo "#################################"
-}	# end function
-
 function UpdateBinLib ()
 {
 	$HOME/bin/Pull-Bin-Sh.sh
@@ -115,15 +106,6 @@ function UpdateBinLib ()
 	echo "##################################"
 	echo "    FINISHED SYNCING BIN/SH"
 	echo "##################################"
-}	# end function
-
-function UpdateNotes ()
-{
-	$HOME/bin/Pull-Notes.sh
-	echo "##################################"
-	echo "	   FINISHED SYNCING NOTES"
-	echo "##################################"
-	
 }	# end function
 
 function UpdateZim ()
@@ -138,15 +120,7 @@ function UpdateRepos ()
 {
 	UpdateBinLib
 
-	if [ "$HOME/Notes" ]
-	then
-		UpdateNotes
-		echo "##################################"
-		echo "      FINISHED SYNCING NOTES"
-		echo "##################################"
-	fi
-
-	if [ "$HOME/development/stiles69/zim" ]
+	if [ -d "$HOME/development/stiles69/zim" ]
 	then
 		UpdateZim
 		echo "##################################"
