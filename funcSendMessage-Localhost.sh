@@ -21,7 +21,6 @@
 
 #-------------------------------------
 #---------- GLOBAL VARIABLES ---------
-#HOST=10.0.0.11
 USAGE="Usage is funcSendMessage HOST APPNAME MSG TITLE"
 ICON="/usr/share/icons/roguedesigns/slave-icon-256x256.png"
 #-------------------------------------
@@ -38,7 +37,7 @@ function SendMessage ()
 		local TITLE="'$4'"
 	fi
 
-	sshpass -p "Samsung#2013" ssh brettsalemink@$HOST dunstify --appname="$APPNAME" --icon="$ICON" "$TITLE" "$MSG"
+	ssh brettsalemink@$HOST dunstify --appname="$APPNAME" --icon="$ICON" "$TITLE" "$MSG"
 
 	curl https://xdroid.net/api/message -X POST -d "k=u-440890b42fee" -d "t='$TITLE'" -d "c='$MSG'" -d "u=http://roguedesigns.us"
    
