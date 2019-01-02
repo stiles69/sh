@@ -71,8 +71,6 @@ function UpdateSystem ()
 function UpdateArch ()
 {
 	
-	echo "UPDATING FOR AN ARCH BASED SYSTEM IN 5 SECONDS"
-	sleep 6 
 	sudo pacman -Syu
 	yay -Syu
 }	# end function
@@ -80,8 +78,6 @@ function UpdateArch ()
 function UpdateDebian ()
 {
 	
-	echo "UPDATING FOR A DEBIAN BASED SYSTEM IN 5 SECONDS"
-	sleep 6
 	sudo ucaresystem-core
 #	sudo apt-get update -y
 #	sudo apt-get upgrade -y
