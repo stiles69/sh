@@ -27,15 +27,15 @@ ICON="/usr/share/icons/roguedesigns/slave-icon-256x256.png"
 #-------------------------------------
 function SendMessage ()
 {
-    if [ "$#" -ne 4 ]
+  if [ "$#" -ne 4 ]
 	then
 		echo "Function is missing parameter. $USAGE. Exiting."				
 		exit 0
-	els
+	else
 		local HOST=$1
 		local APPNAME="'$2'"
-		local MSG="'$3'"
-		local TITLE="'$4'"
+		local TITLE="'$3'"
+		local MSG="'$4'"
 	fi
 
 	sshpass -p "Samsung#2013" ssh brettsalemink@$HOST dunstify --appname="$APPNAME" --icon="$ICON" "$TITLE" "$MSG"

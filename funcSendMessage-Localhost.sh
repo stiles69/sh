@@ -16,28 +16,21 @@
 #       CREATED: 01/02/2019 01:36
 #      REVISION:  ---
 #====================================================
-
-#------------ SOURCED ----------------
-
-#-------------------------------------
-#---------- GLOBAL VARIABLES ---------
-USAGE="Usage is funcSendMessage HOST APPNAME MSG TITLE"
-ICON="/usr/share/icons/roguedesigns/slave-icon-256x256.png"
-#-------------------------------------
+set o 
 function SendMessage ()
 {
-    if [ "$#" -ne 4 ]
+	if [ "$#" -ne 3 ]
 	then
-		echo "Function is missing parameter. $USAGE. Exiting."				
+		echo "Function is missing parameter. Usage is SendMessage APPNAME TITLE MSG"
 		exit 0
-	els
-		local HOST=$1
-		local APPNAME="'$2'"
+	else
+		local APPNAME="'$1'"
+		local TITLE="'$2'"
 		local MSG="'$3'"
-		local TITLE="'$4'"
+		local ICON="/usr/share/icons/roguedesigns/slave-icon-256x256.png"
 	fi
 
-	ssh brettsalemink@$HOST dunstify --appname="$APPNAME" --icon="$ICON" "$TITLE" "$MSG"
+	ssh brettsalemink@10.0.0.11 dunstify --appname="$APPNAME" --icon="$ICON" "$TITLE" "$MSG"
 
 	curl https://xdroid.net/api/message -X POST -d "k=u-440890b42fee" -d "t='$TITLE'" -d "c='$MSG'" -d "u=http://roguedesigns.us"
    
