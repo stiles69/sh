@@ -23,22 +23,26 @@
 #---------- GLOBAL VARIABLES ---------
 HOST=10.0.0.11
 USAGE="Usage is funcSendMessage MSG TITLE"
-ICON="/usr/share/icons/roguedesigns/slave-icon-256x256.png"
+#ICON="/usr/share/icons/roguedesigns/slave-icon-256x256.png"
 #-------------------------------------
 function SendMessage ()
 {
-  if [ "$#" -ne 2 ]
+  if [ "$#" -ne 5 ]
 	then
 		echo "Function is missing parameter. $USAGE. Exiting."				
 		exit 0
 	else
-		local TITLE="'$1'"
-		local MSG="'$2'"
+		
+		local APP="'$1'"
+		local SUMMARY="'$2'"
+		local BODY="'$3'"
+		local ICON="$4"
+		local URG="$5"
 	fi
 
-	sshpass -p "Samsung#2013" ssh brettsalemink@10.0.0.11 'dunstify --icon=/usr/share/icons/roguedesigns/slave-icon-256x256.png "'$TITLE'" "'$MSG'"'
+	sshpass -p "Samsung#2013" ssh brettsalemink@10.0.0.11 'dunstify -a "'$APP'" -s "'$SUMMARY'" -b "'$BODY'" -i "$ICON" -u "$URG"'
 
-	curl https://xdroid.net/api/message -X POST -d "k=u-440890b42fee" -d "t='$TITLE'" -d "c='$MSG'" -d "u=http://roguedesigns.us"
+	curl https://xdroid.net/api/message -X POST -d "k=u-440890b42fee" -d "t='$SUMMARY'" -d "c='$BODY'" -d "u=http://roguedesigns.us"
    
 
 }	
