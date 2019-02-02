@@ -4,6 +4,6 @@
 
 # sh
 
-This stores my bash functions.
+This stores my bash functions that are called from external scripts such as in bin.
 
 **This is a submodule of lib**
