@@ -19,11 +19,11 @@
 set -o nounset                              # Treat unset variables as an error
 
 
-function funcTruncate ()
+function Truncate ()
 {
 	local NAME
 	
-	NAME=`echo "$FILENAME" | cut -d'.' -f1`
+	NAME=`echo "$1" | cut -d'.' -f1`
 
 	echo $NAME
 
