@@ -16,15 +16,12 @@
 #       CREATED: 06/24/2018 00:45
 #      REVISION:  ---
 #=========================================================
-set -o nounset                              # Treat unset variables as an error
+#set -o nounset                              # Treat unset variables as an error
 
 
 function Truncate ()
 {
-	local NAME
+
+	echo "$1" | cut -d '.' -f1
 	
-	NAME=`echo "$1" | cut -d'.' -f1`
-
-	echo $NAME
-
 }
